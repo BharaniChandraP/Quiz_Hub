@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Attempt Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+  
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  
+    h3 {
+      margin-bottom: 10px;
+    }
+  
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+  
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+  
+    button[type="submit"] {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<form action="/submitquiz/<%=quiz._id%>" method="post">
+  
+  <% for (let i = 0; i < quiz.questions.length; i++) { %>
+    <h3>Question <%= i + 1 %>: <%= quiz.questions[i].question %></h3>
+    <% for (let j = 0; j < quiz.questions[i].options.length; j++) { %>
+      <input type="radio" name="answer<%= i+1 %>" value="<%= j  %>">
+      <label><%= quiz.questions[i].options[j].option %></label><br>
+    <% } %>
+    <br>
+  <% } %>
+  
+  <input type="hidden" name="userId" value= req.user_id >
+  <button type="submit">Submit Quiz</button>
+</form>
+</body>
+</html>
+<!-- quiz.questions[i].options[j].option -->
+

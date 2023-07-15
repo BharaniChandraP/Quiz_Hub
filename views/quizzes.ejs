@@ -1,0 +1,8 @@
+<!-- quizzes.ejs -->
+<h1>All Quizzes</h1>
+
+<ul>
+  <% quizzes.forEach(quiz => { %>
+    <li><a href="/attemptquiz"><%= quiz.quizName %></a></li>
+  <% }) %>
+</ul>

@@ -1,0 +1,54 @@
+<!-- otherusersprofile.ejs -->
+<html>
+<head>
+  <title>Other User's Profile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    h2 {
+      margin-top: 20px;
+    }
+
+    p {
+      margin-top: 10px;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>User Profile</h1>
+  <h2>Name: <%= name %></h2>
+  
+  <% if (quizzes.length === 0) { %>
+    <p>No quizzes found for this user.</p>
+  <% } else { %>
+    <h3>Quizzes:</h3>
+    <ul>
+      <% quizzes.forEach(quiz => { %>
+        <a href="/attemptquiz/<%= quiz._id%>"><li><%= quiz.quizName %></li></a>
+      <% }) %>
+    </ul>
+  <% } %>
+</body>
+</html>
