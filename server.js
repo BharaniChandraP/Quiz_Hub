@@ -415,6 +415,18 @@ app.get('/register', (req, res) => {
 app.get('/home', ensureAuthenticated, (req, res) => {
   res.render('home.ejs');
 });
+app.get('/logout', (req, res) => {
+  
+    res.redirect('/login'); // Redirect to the login page after logout
+  
+});
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
 
   app.post('/register', (req, res) => {
     const { name, email, password } = req.body;
@@ -677,7 +689,7 @@ if (mongoose.connection.readyState === 1) {
   
 // Start the server
 
-const PORT=process.env.PORT || 3000;
+const PORT=process.env.PORT || 5000;
 function startServer() {
   app.listen(PORT,"0.0.0.0", () => {
     console.log('Server started on port 3000');
