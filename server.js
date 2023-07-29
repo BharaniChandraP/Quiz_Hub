@@ -476,15 +476,16 @@ app.post('/createquiz', async (req, res) => {
       quizName: req.body.quizName,
       questions: []
     };
+    console.log(req.body);
 
-    for (let i = 0; i <5; i++) {
+    for (let i = 1; i <=5; i++) {
       const question = req.body['question' + i];
       const options = [];
-      for (let j = 0; j <4; j++) {
+      for (let j = 1; j <=4; j++) {
         options.push({ option: req.body['option' + i + j] });
       }
       const correctAnswer = req.body['correctAnswer' + i];
-      console.log(question, options, correctAnswer);
+      console.log("here" + question, options, correctAnswer);
       createQuiz.questions.push({ question, options, correctAnswer });
     }
 
@@ -503,6 +504,52 @@ app.post('/createquiz', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+// app.post('/submitquiz/:quizId', ensureAuthenticated,async (req, res) => {
+//   try {
+//     const quizId = req.params.quizId;
+//     const submittedQuiz = await Quiz.findById(quizId);
+//     if (!submittedQuiz) {
+//       return res.status(404).send('Quiz not found');
+//     }
+
+//     const userAnswers = req.body;
+//     let score = 1;
+//     console.log(req.body)
+//     for (let i = 1; i <=5; i++) {
+//       const question = submittedQuiz.questions[i];
+//       const userAnswer = userAnswers[`answer${i}`];
+//       //console.log(userAnswer);  // Debugging
+//       const correctAnswer = question.options[question.correctAnswer].option;
+//       console.log(correctAnswer);  // Debugging
+//       if (userAnswer === correctAnswer) {
+//         score++;
+//       }
+//     }
+
+//     // Update the user's score for the submitted quiz
+   
+//     const user = await User.findById(req.user._id);
+//     if (!user) {
+//       return res.status(404).send('User not found');
+//     }
+
+//     const existingScore = user.quizScores.find(
+//       (quizScore) => quizScore.quiz.toString() === quizId
+//     );
+//     if (existingScore) {
+//       existingScore.score = score;
+//     } else {
+//       user.quizScores.push({ quiz: quizId, score });
+//     }
+
+//     await user.save();
+
+//     res.redirect('/profile');
+//   } catch (error) {
+//     console.error('Error submitting quiz:', error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// });
 app.post('/submitquiz/:quizId', ensureAuthenticated,async (req, res) => {
   try {
     const quizId = req.params.quizId;
@@ -512,9 +559,9 @@ app.post('/submitquiz/:quizId', ensureAuthenticated,async (req, res) => {
     }
 
     const userAnswers = req.body;
-    let score = 1;
+    let score = 0;
     console.log(req.body)
-    for (let i = 0; i <5; i++) {
+    for (let i = 0; i < submittedQuiz.questions.length; i++) {
       const question = submittedQuiz.questions[i];
       const userAnswer = userAnswers[`answer${i}`];
       //console.log(userAnswer);  // Debugging
@@ -547,7 +594,6 @@ app.post('/submitquiz/:quizId', ensureAuthenticated,async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
 app.get('/attemptquiz/:quizId', async (req, res) => {
 try {
   const quizId = req.params.quizId;

@@ -30,7 +30,7 @@
   <body>
     <h1>Submit Quiz</h1>
     <form action="/submitquiz/<%= quiz._id %>" method="POST">
-      <% for (let i = 0; i < quiz.questions.length; i++) { %>
+      <% for (let i = 0; i <quiz.questions.length; i++) { %>
         <h3>Question <%= i + 1 %>: <%= quiz.questions[i].question %></h3>
         <% for (let j = 0; j < quiz.questions[i].options.length; j++) { %>
           <input type="radio" name="answer<%= i %>" value="<%= j %>">
