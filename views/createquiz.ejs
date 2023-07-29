@@ -1,78 +1,85 @@
-
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Create Quiz</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #d1dea7; /* Grey-Green */
+        }
 
-      h1 {
-        text-align: center;
-      }
+        h1 {
+            text-align: center;
+            color: #239618; /* Green */
+        }
 
-      form {
-        max-width: 500px;
-        margin: 0 auto;
-      }
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #ffffff; /* White */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
 
-      label {
-        display: block;
-        margin-top: 10px;
-      }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #2c3e50; /* Dark Blue */
+        }
 
-      input[type="text"],
-      input[type="number"] {
-        width: 100%;
-        padding: 5px;
-        margin-top: 5px;
-      }
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
 
-      button[type="submit"] {
-        display: block;
-        margin: 20px auto;
-        padding: 10px 20px;
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        cursor: pointer;
-      }
+        button[type="submit"] {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #0f16f0; /* Blue */
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
 
-      button[type="submit"]:hover {
-        background-color: #45a049;
-      }
+        button[type="submit"]:hover {
+            background-color: #56aee9; /* Light Blue */
+        }
     </style>
-  </head>
-  <body>
-    <h1>Create Quiz</h1>
-    <form action="/createquiz" method="POST">
-        <label for="quizName">Quiz Name:</label>
-        <input type="text" name="quizName" required><br>
-        <!-- <input type="text" name="username" placeholder="Username" required> -->
-      <% for (let i = 1; i <= 5; i++) { %>
-        <h2>Question <%= i %></h2>
-        <label for="question<%= i %>">Question:</label>
-        <input type="text" name="question<%= i %>" required><br>
+</head>
+<body>
+<h1>Create Quiz</h1>
+<form action="/createquiz" method="POST">
+    <label for="quizName">Quiz Name:</label>
+    <input type="text" name="quizName" required><br>
+    <!-- <input type="text" name="username" placeholder="Username" required> -->
+    <% for (let i = 1; i <= 5; i++) { %>
+    <h2>Question <%= i %></h2>
+    <label for="question<%= i %>">Question:</label>
+    <input type="text" name="question<%= i %>" required><br>
 
-        <label for="option<%= i %>1">Option 1:</label>
-        <input type="text" name="option<%= i %>1" required><br>
+    <label for="option<%= i %>1">Option 1:</label>
+    <input type="text" name="option<%= i %>1" required><br>
 
-        <label for="option<%= i %>2">Option 2:</label>
-        <input type="text" name="option<%= i %>2" required><br>
+    <label for="option<%= i %>2">Option 2:</label>
+    <input type="text" name="option<%= i %>2" required><br>
 
-        <label for="option<%= i %>3">Option 3:</label>
-        <input type="text" name="option<%= i %>3" required><br>
+    <label for="option<%= i %>3">Option 3:</label>
+    <input type="text" name="option<%= i %>3" required><br>
 
-        <label for="option<%= i %>4">Option 4:</label>
-        <input type="text" name="option<%= i %>4" required><br>
-        
-        <label for="correctAnswer<%= i %>"> Enter Correct Option:</label>
-        <input type="number"  name="correctAnswer<%= i %>" required placeholder="Enter from 0 to 3"><br>
-        
-        <br>
-      <% } %>
-      <button type="submit">Create Quiz</button>
-    </form>
-  </body>
+    <label for="option<%= i %>4">Option 4:</label>
+    <input type="text" name="option<%= i %>4" required><br>
+
+    <label for="correctAnswer<%= i %>"> Enter Correct Option:</label>
+    <input type="number"  name="correctAnswer<%= i %>" required placeholder="Enter from 0 to 3"><br>
+
+    <br>
+    <% } %>
+    <button type="submit">Create Quiz</button>
+</form>
+</body>
 </html>

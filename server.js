@@ -477,10 +477,10 @@ app.post('/createquiz', async (req, res) => {
       questions: []
     };
 
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 0; i <5; i++) {
       const question = req.body['question' + i];
       const options = [];
-      for (let j = 1; j <= 4; j++) {
+      for (let j = 0; j <4; j++) {
         options.push({ option: req.body['option' + i + j] });
       }
       const correctAnswer = req.body['correctAnswer' + i];
@@ -512,9 +512,9 @@ app.post('/submitquiz/:quizId', ensureAuthenticated,async (req, res) => {
     }
 
     const userAnswers = req.body;
-    let score = 0;
+    let score = 1;
     console.log(req.body)
-    for (let i = 0; i < submittedQuiz.questions.length; i++) {
+    for (let i = 0; i <5; i++) {
       const question = submittedQuiz.questions[i];
       const userAnswer = userAnswers[`answer${i}`];
       //console.log(userAnswer);  // Debugging
